@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}  
+ 
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsbsy,amsthm}
+\usepackage{graphicx,xcolor}
+\usepackage{fancyhdr}
+
+% Environments
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem} 
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+ 
+\newcommand{\di}{\displaystyle}
+
+\fancyhead[L]{}
+\fancyhead[R]{
+	\includegraphics[scale=1]{xmumlogo}
+}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{2cm}
+\pagestyle{plain}
+\thispagestyle{fancy}
+
+ 
+ \title{MAT107 Probability Theory \\ Instructions for the Project}
+ \author{Peter Zeiner}
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{fancy}	 
+
+\newpage
+
+\setlength{\headheight}{0cm}
+ 
+\section{General Instructions}
+ 
+ 	This project is a group work. Each group member has to contribute. The contributions of each group member have to be summarised in the last section. The \emph{deadline for submission is Friday of Week 15, 17 July 2026, 23:59.}
+ 	
+ 	Your report has to be written with latex. You can use this file as a template, but you do not need to do so. You are also provided with an excel template to table data and do computations. There is one sheet to randomly generate the data, and another one to do the calculations. Since excel will always generate new data if you use a random number generator, you have to copy the data from the sheet Data\_Generation to the sheet Computations using the 'paste values' option. 
+ 	
+ 	
+	Each group has to submit the following two files
+ 	\begin{enumerate}
+ 		\item The report PDF file.
+ 		\item The excel file.
+ 	\end{enumerate}
+ 	Both files must be named as Group\_X\_MAT107\_Project\_202604, where X is your group number that will be mailed to you.
+ 
+ 	Solve the problems given in the next section and follow the instructions stated there. 
+ 	The report should be at least 6 pages and at most 10 pages, excluding the cover page and the section on your contributions, if you use the style of this document. 
+ 	
+ 	The report must be written in report/textbook format. \emph{Do not} use ``problem and solution'' format. Also, do not use a style "Example $n$, Task $n$ or something like that. Do not copy the problem statement one-to-one, since this also contains instructions to you that are irrelevant for the reader. Of course, you have to clearly specify which problem you are dealing with and present their solutions with enough explanations so that an interested reader can understand it (the interested reader does not know my instruction file).
+ 	
+	Write in proper English, with full sentences. Use appropriate punctuation marks. Paragraphs should neither be too long nor too short, usually a paragraph contains more than one sentence. Do not use too many sections. Do not overuse boldface.
+ 
+	Your solutions must contain sufficient explanation. It is not enough to just write down the numerical solution. Of course, you cannot prove everything and you may use the results from class. But each project shall contain one substantial proof. It is up to you what you choose.  
+ 
+\section{Problem 1 -- Drawing balls with replacement}
+ 
+	You shall consider the following experiment. In an urn are $m$ white balls and $n$ black balls  -- each group will get their values for $m$ and $n$ in a separate email. A ball is drawn randomly, its colour is noted and then the ball is placed back in the urn. The draw is repeated, the colour of the ball is noted and the ball is placed back, and so on. In total 20 balls are drawn.
+ 
+	Calculate the probability that a white ball is drawn. Based on this probability, simulate the experiment 500 times using excel -- use the provided excel sheet. 
+ 
+	Your tasks are as follows.
+	\begin{enumerate}
+ 		\item Find the percentage of white balls in all your 10000 draws. Compare it with the expected values. Give a short explanation of the theoretical background.
+ 		\item Let $X$ be the number of white balls drawn. Find the probability mass function for this random variable. Then, find the relative frequency of the number of white balls drawn in your 500 experiments.
+ 		Compare them with the calculated probabilities. Present the results in a table (you can break the table into two parts side by side). Give a short explanation of the theoretical background.
+ 		
+ 		\begin{tabular}{|c|c|c|}
+ 			\hline 
+ 			$x$ & $p(x)$ & rel. freq. (find a symbol for that)\\ 
+ 			\hline 
+ 			1 & & \\
+ 			\hline 
+ 			2 & & \\
+ 			\hline 
+ 			3 & & \\
+ 			\hline 
+ 		\end{tabular} \begin{tabular}{|c|c|c|}
+ 		\hline 
+ 		$x$ & $p(x)$ & rel. freq. \\ 
+ 		\hline 
+ 		11 & & \\
+ 		\hline 
+ 		12 & & \\
+ 		\hline 
+ 		13 & & \\
+ 		\hline 
+ 		\end{tabular} 
+ 		
+ 		
+ 		
+ 		\item Find the expected value of $X$, and find the average of the number of white balls drawn in your 500 experiments. Compare the two values and discuss them. 
+ 		\item Find the probability that there is no white ball among the first 3 balls drawn. Then, find the relative frequency of your experiments that do not have a white ball among the first three balls drawn. Compare the values and discuss them. Give a short explanation of the theoretical background.
+ 		\item Find the probability that there are 4 white balls drawn before 5 black balls.
+ 		Then, find the relative frequency of experiments in which 4 white balls are drawn before 5 black balls.
+ 		Compare the values and discuss them. Give a short explanation of the theoretical background.
+ 		\item Find the probability that less than 6 white balls are drawn. Then, use an approximation of your distribution by a Poisson distribution to calculate the probability that less than 6 white balls are chosen. Similarly, use an approximation by a normal distribution to answer this question. Finally, find the relative frequency of your experiments that contain less than 6 white balls. Compare all those values and discuss them - this includes to mention the relative errors and the deviation from the expected results. Provide some theoretical background. You can summarise your data in a table.
+ \end{enumerate}
+ 
+ Numerical values shall have a reasonable number of digits. For the normal distribution, use excel to calculate the exact value. Then, solve the problem using the table for the standard normal distribution and discuss the relative error with the exact value for the normal distribution.
+ 
+ 
+ 
+ \section{Problem 2 -- Drawing balls without replacement}
+ 
+ You shall consider a problem similar to the previous one, but now you shall draw balls without replacement. Again, the urn contains $m$ white balls and $n$ black balls  -- use the same values you have got for Problem~1. Here, a ball is drawn randomly, but now it is not replaced. Then a second ball is drawn (but not replaced) and so on. In total 20 balls are drawn.
+ 
+ Calculate the probability that a white ball is drawn, given that already $m_1$ white balls and $n_1$ black balls have been drawn. Based on this probability, simulate the experiment 500 times using excel -- use the provided excel sheet. 
+ 
+ Here, you have to inform yourself about the hypergeometric distribution - consult the textbook.
+ 
+ Your tasks are as follows.
+ \begin{enumerate}
+ 	\item Let $X$ be the number of white balls drawn. Find the probability mass function for this random variable. Then, find the relative frequency of the number of white balls drawn in your 500 experiments.
+ 	Compare them with the calculated probabilities. Present the results in a table. Give a short explanation of the theoretical background.
+ 	\item Find the expected value of $X$, and find the average of the number of white balls drawn in your 500 experiments. Compare the two values and discuss them. 
+ 	\item Find the probability that there is no white ball among the first 3 balls drawn. Then, find the relative frequency of your experiments that do not have a white ball among the first three balls drawn. Compare the values and discuss them. Give a short explanation of the theoretical background.
+ \end{enumerate}
+ 
+ For each of the three tasks, compare your results with the corresponding results of Problem~1 and discuss them.
+ 
+ 
+\section{Contribution}
+
+Write a summary of the contributions of each member to the project.
+
+
+\end{document}
+
