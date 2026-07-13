@@ -1,0 +1,298 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,tabularx,array,multirow}
+\usepackage{graphicx,xcolor}
+\usepackage{fancyhdr,lastpage}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{enumitem}
+
+\definecolor{xmumblue}{HTML}{2F5597}
+\definecolor{xmumorange}{HTML}{C65911}
+\definecolor{lightblue}{HTML}{D9E7F7}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newtheorem{proposition}{Proposition}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\linespread{1.13}
+\setlength{\headheight}{30pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MAT107 Probability Theory}
+\rhead{Group 3}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+\newcommand{\relerr}[2]{\frac{\lvert #1-#2\rvert}{\lvert #2\rvert}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.38\textwidth]{xmumlogo.png}\par
+  \vspace{1.4cm}
+  {\Large MAT107 Probability Theory\par}
+  \vspace{0.5cm}
+  {\huge\bfseries Sampling from an Urn:\\With and Without Replacement\par}
+  \vspace{0.5cm}
+  {\Large Group Project Report\par}
+  \vspace{1.4cm}
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{ll}
+    Zhang Yang & MAT2509036\\
+    Zhu Xinbo & MAT2509040\\
+    Chen Yanfu & MAT2509003\\
+    Zhang Qixuan & MAT2509034
+  \end{tabular}
+  \vfill
+  {\large Group 3\par}
+  {\large July 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction and experimental design}
+
+An urn contains 117 white balls and 191 black balls, so the total number of balls is
+\[
+N=117+191=308,
+\qquad
+p=P(\text{white})=\frac{117}{308}=0.379870,
+\qquad q=1-p=0.620130.
+\]
+Two experiments were studied. In the first experiment, a ball was returned to the urn after every draw. In the second experiment, a selected ball was not returned. Each experiment consisted of 20 draws, and each model was simulated 500 times in the supplied workbook. Thus, each simulation contains 10,000 recorded draws.
+
+The data-generation sheets contain volatile random formulas. One generated realization was copied as fixed values into the computation sheets before the numerical analysis was performed. Consequently, the results in this report remain unchanged when the workbook recalculates. White and black outcomes are represented by \(W\) and \(B\), respectively.
+
+For a theoretical quantity \(t\) and a comparison value \(a\), relative error is reported as
+\[
+\operatorname{RE}(a;t)=\frac{|a-t|}{|t|}\times100\%.
+\]
+The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
+
+\section{Drawing with replacement}
+
+\subsection{Overall proportion and binomial model}
+
+With replacement, the 20 draws in one experiment are independent Bernoulli trials with a constant success probability \(p\), where success means drawing a white ball. The number \(X\) of white balls therefore has the binomial distribution
+\[
+P(X=x)=\binom{20}{x}p^xq^{20-x},\qquad x=0,1,\ldots,20.
+\]
+Across the 10,000 simulated draws, the observed white proportion was 0.378400, compared with the theoretical value 0.379870. The absolute deviation was 0.001470 and the relative error was 0.3870\%. This close agreement is consistent with the law of large numbers.
+
+Table~\ref{tab:binpmf} compares the binomial probabilities with the relative frequencies from the 500 experiments. Both columns sum to 1, up to rounding. The largest discrepancies occur at individual values such as \(x=10\), but the overall shape remains centred around 7 or 8 white balls.
+
+\begin{table}[H]
+\centering
+\caption{Binomial probabilities and simulated relative frequencies.}
+\label{tab:binpmf}
+\small
+\begin{tabular}{crr@{\hspace{1.1cm}}crr}
+\toprule
+\(x\) & \(P(X=x)\) & Rel. freq. & \(x\) & \(P(X=x)\) & Rel. freq.\\
+\midrule
+0  & 0.000071 & 0.000 & 11 & 0.054142 & 0.062\\
+1  & 0.000867 & 0.000 & 12 & 0.024874 & 0.034\\
+2  & 0.005043 & 0.008 & 13 & 0.009377 & 0.010\\
+3  & 0.018536 & 0.018 & 14 & 0.002872 & 0.004\\
+4  & 0.048257 & 0.036 & 15 & 0.000704 & 0.000\\
+5  & 0.094593 & 0.106 & 16 & 0.000135 & 0.000\\
+6  & 0.144861 & 0.164 & 17 & 0.000019 & 0.000\\
+7  & 0.177474 & 0.178 & 18 & 0.000002 & 0.000\\
+8  & 0.176661 & 0.158 & 19 & 0.000000 & 0.000\\
+9  & 0.144288 & 0.166 & 20 & 0.000000 & 0.000\\
+10 & 0.097225 & 0.056 & & &\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Expected value and short initial sequences}
+
+For a binomial random variable, \(E[X]=20p\). Here,
+\[
+E[X]=20\left(\frac{117}{308}\right)=7.597403.
+\]
+The simulated mean was 7.568000, an absolute deviation of 0.029403 and a relative error of 0.3870\%. The sample mean is therefore very close to its theoretical target.
+
+The event of no white ball among the first three draws is the event \(BBB\). Independence gives
+\[
+P(BBB)=q^3=0.238478.
+\]
+The empirical frequency was 0.228000. Its absolute deviation was 0.010478 and its relative error was 4.3936\%. The larger percentage error, compared with the overall white proportion, is reasonable because this calculation uses only 500 three-draw sequences rather than 10,000 individual draws.
+
+\subsection{Four white balls before five black balls}
+
+Suppose the fourth white ball arrives after exactly \(b\) black balls, where \(b=0,1,2,3,4\). The last draw must be white, and among the preceding \(b+3\) positions there must be exactly three white balls. Therefore,
+\[
+P(4W\text{ before }5B)
+=\sum_{b=0}^{4}\binom{b+3}{3}p^4q^b
+=0.359647.
+\]
+Equivalently, after the first eight draws at least four outcomes must be white; by that time either the fourth white or the fifth black must already have appeared. The simulated relative frequency was 0.372000, giving an absolute deviation of 0.012353 and a relative error of 3.4347\%.
+
+\section{Approximating the lower binomial tail}
+
+The event ``less than six white balls'' is \(X\leq5\). Its exact binomial probability is
+\[
+P(X<6)=\sum_{x=0}^{5}\binom{20}{x}p^xq^{20-x}=0.167366.
+\]
+The empirical frequency was 0.168000. Its relative error from the exact value was only 0.3787\%.
+
+For the Poisson approximation, \(\lambda=np=7.597403\), so
+\[
+P(X<6)\approx \sum_{x=0}^{5}e^{-\lambda}\frac{\lambda^x}{x!}=0.230956.
+\]
+This differs from the exact binomial value by 0.063589, a relative error of 37.9941\%. The approximation is poor because \(p\approx0.38\) is not small, whereas the Poisson approximation is most reliable when the number of trials is large and the success probability is small.
+
+For the normal approximation,
+\[
+\mu=np=7.597403,
+\qquad
+\sigma=\sqrt{npq}=\sqrt{4.711376}=2.170571.
+\]
+The continuity-corrected boundary for \(X\leq5\) is 5.5. Excel gives
+\[
+P(X<6)\approx \Phi\!\left(\frac{5.5-7.597403}{2.170571}\right)
+=\Phi(-0.966291)=0.166949.
+\]
+The error relative to the exact binomial value is 0.2491\%. For a printed standard-normal table, the standardized value is rounded to \(-0.97\), giving \(\Phi(-0.97)=0.1660\). This table value differs from Excel's unrounded normal calculation by 0.5686\%, and from the exact binomial probability by 0.8163\%. The normal approximation is substantially better than the Poisson approximation in this case.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of methods for \(P(X<6)\).}
+\begin{tabular}{lrr}
+\toprule
+Method & Probability & Relative error from exact binomial\\
+\midrule
+Exact binomial & 0.167366 & --\\
+Poisson approximation & 0.230956 & 37.9941\%\\
+Normal CDF, continuity corrected & 0.166949 & 0.2491\%\\
+Standard-normal table, \(z=-0.97\) & 0.166000 & 0.8163\%\\
+Simulation & 0.168000 & 0.3787\%\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Drawing without replacement}
+
+\subsection{Conditional probabilities and the hypergeometric law}
+
+Without replacement, successive draws are dependent. If \(m_1\) white balls and \(n_1\) black balls have already been drawn, the conditional probability that the next ball is white is
+\[
+P(\text{next is white}\mid m_1,n_1)
+=\frac{117-m_1}{308-m_1-n_1}.
+\]
+The simulation updates this probability after every draw. The total number \(X\) of white balls in 20 draws follows a hypergeometric distribution:
+\[
+P(X=x)=\frac{\binom{117}{x}\binom{191}{20-x}}{\binom{308}{20}},
+\qquad x=0,1,\ldots,20.
+\]
+
+\begin{proposition}
+The stated probability mass function is valid, and its expected value is
+\(E[X]=20(117/308)\).
+\end{proposition}
+
+\begin{proof}
+Every unordered sample of 20 distinct balls is equally likely. There are \(\binom{308}{20}\) such samples. A sample containing exactly \(x\) white balls can be formed by choosing \(x\) of the 117 white balls and independently choosing \(20-x\) of the 191 black balls. Hence the number of favourable samples is \(\binom{117}{x}\binom{191}{20-x}\), which proves the probability formula. Summing the favourable counts over all possible \(x\) partitions every sample according to its number of white balls, so the probabilities sum to one.
+
+For the expectation, label the 117 white balls and define \(I_j=1\) if white ball \(j\) is included in the 20-ball sample, and \(I_j=0\) otherwise. Then \(X=\sum_{j=1}^{117}I_j\). By symmetry, any particular ball is included with probability \(20/308\). Linearity of expectation does not require independence, so
+\[
+E[X]=\sum_{j=1}^{117}E[I_j]
+=117\left(\frac{20}{308}\right)
+=20\left(\frac{117}{308}\right)=7.597403.
+\]
+This completes both parts of the result.
+\end{proof}
+
+\subsection{Numerical results}
+
+The simulated mean without replacement was 7.606000. Its absolute deviation from 7.597403 was 0.008597, or 0.1132\%. Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simulated relative frequencies.
+
+\begin{table}[H]
+\centering
+\caption{Hypergeometric probabilities and simulated relative frequencies.}
+\label{tab:hyperpmf}
+\small
+\begin{tabular}{crr@{\hspace{1.1cm}}crr}
+\toprule
+\(x\) & \(P(X=x)\) & Rel. freq. & \(x\) & \(P(X=x)\) & Rel. freq.\\
+\midrule
+0  & 0.000047 & 0.000 & 11 & 0.051717 & 0.050\\
+1  & 0.000645 & 0.002 & 12 & 0.022467 & 0.032\\
+2  & 0.004109 & 0.004 & 13 & 0.007890 & 0.006\\
+3  & 0.016293 & 0.020 & 14 & 0.002218 & 0.006\\
+4  & 0.045108 & 0.048 & 15 & 0.000491 & 0.002\\
+5  & 0.092677 & 0.092 & 16 & 0.000084 & 0.000\\
+6  & 0.146608 & 0.146 & 17 & 0.000011 & 0.000\\
+7  & 0.182849 & 0.178 & 18 & 0.000001 & 0.000\\
+8  & 0.182593 & 0.178 & 19 & 0.000000 & 0.000\\
+9  & 0.147427 & 0.148 & 20 & 0.000000 & 0.000\\
+10 & 0.096764 & 0.088 & & &\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The probability that the first three balls are all black is now
+\[
+\frac{191}{308}\frac{190}{307}\frac{189}{306}
+=\frac{\binom{191}{3}}{\binom{308}{3}}
+=0.237049.
+\]
+The empirical frequency was 0.246000, producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
+
+\section{Comparison of the two sampling models}
+
+The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
+\[
+20pq=4.711376.
+\]
+Without replacement, the finite-population correction reduces the variance to
+\[
+20pq\frac{308-20}{308-1}=4.419793.
+\]
+Thus, the hypergeometric distribution is slightly more concentrated near its mean. This can be seen in the probabilities for \(x=7\) and \(x=8\), which are both larger without replacement than under the binomial model.
+
+The probability of three initial black balls also decreases from 0.238478 with replacement to 0.237049 without replacement. After each black ball is removed, the remaining proportion of black balls falls, making another black draw slightly less likely. The theoretical difference is small because the sample of three balls is small compared with the population of 308 balls.
+
+\begin{table}[H]
+\centering
+\caption{Summary comparison of theoretical and simulated quantities.}
+\begin{tabular}{lrrrr}
+\toprule
+Quantity & Theory, repl. & Sim., repl. & Theory, no repl. & Sim., no repl.\\
+\midrule
+Mean white count & 7.597403 & 7.568000 & 7.597403 & 7.606000\\
+No white in first 3 & 0.238478 & 0.228000 & 0.237049 & 0.246000\\
+Variance of white count & 4.711376 & -- & 4.419793 & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+
+The simulations agree well with the principal theoretical predictions. The overall white proportion and both sample means are close to their expected values, and the binomial and hypergeometric probability tables have the anticipated shapes. Differences between theory and simulation are attributable to ordinary sampling variation in 500 experiments.
+
+For the lower binomial tail, the continuity-corrected normal approximation was accurate, whereas the Poisson approximation was not appropriate for the relatively large success probability. Removing balls creates dependence and slightly reduces the variance through the finite-population correction, but it does not change the expected white count. These observations illustrate how the sampling mechanism affects a distribution even when the one-draw proportion remains the same.
+
+\newpage
+\section*{Contribution}
+\addcontentsline{toc}{section}{Contribution}
+
+The allocation of individual contributions is intentionally left undetermined and must be completed by the group before submission.
+
+\begin{tabularx}{\textwidth}{>{\bfseries}l l X}
+\toprule
+Student & Student ID & Contribution\\
+\midrule
+Zhang Yang & MAT2509036 & To be completed by the group before submission.\\
+Zhu Xinbo & MAT2509040 & To be completed by the group before submission.\\
+Chen Yanfu & MAT2509003 & To be completed by the group before submission.\\
+Zhang Qixuan & MAT2509034 & To be completed by the group before submission.\\
+\bottomrule
+\end{tabularx}
+
+\end{document}

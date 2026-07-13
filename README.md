@@ -1,195 +1,154 @@
 # MAT107 Probability Theory Group Project
 
-This repository is for our MAT107 Probability Theory group project. It keeps the project instructions, Excel worksheet, LaTeX references, and our report source files in one shared place so everyone can work from the same materials.
+This repository contains the completed analysis for Group 3 of the MAT107 Probability Theory project. The project compares drawing 20 balls from an urn with and without replacement, using 500 simulated experiments for each model.
 
-## Repository Contents
+## Group and project parameters
+
+| Student | Student ID |
+|---|---|
+| Zhang Yang | MAT2509036 |
+| Zhu Xinbo | MAT2509040 |
+| Chen Yanfu | MAT2509003 |
+| Zhang Qixuan | MAT2509034 |
+
+- Group number: **3**
+- White balls: \(m=117\)
+- Black balls: \(n=191\)
+- Total balls: \(N=308\)
+- Probability of white on the first draw: \(p=117/308\approx0.379870\)
+
+The contribution allocation is intentionally left undetermined. Complete the contribution section in the LaTeX source before submission.
+
+## Completed deliverables
+
+The two files required by the project instructions are:
+
+- `outputs/019f5a64-406e-7bc1-a09a-31f20172f71a/Group_3_MAT107_Project_202604.xlsx`
+- `output/pdf/Group_3_MAT107_Project_202604.pdf`
+
+The editable report source is:
+
+- `report/Group_3_MAT107_Project_202604.tex`
+
+The original blank workbook is preserved as `Group_X_MAT107_Project_Worksheet.xlsx`.
+
+## What was completed in the workbook
+
+The final workbook contains five sheets:
+
+1. `Team_Info` records the group members and the values of \(m\), \(n\), \(N\), and \(p\).
+2. `Problem1_Data_Generation` contains volatile `RAND()` formulas for sampling with replacement.
+3. `Problem1_Computations` contains a fixed 500-by-20 snapshot, row-level calculations, a binomial probability table, empirical frequencies, and the required approximation results.
+4. `Problem2_Data_Generation` updates the probability of white after every draw to simulate sampling without replacement.
+5. `Problem2_Computations` contains the fixed second snapshot, the hypergeometric probability table, empirical frequencies, and comparisons with Problem 1.
+
+The computation sheets contain fixed `W`/`B` values. Recalculating Excel can change the data-generation sheets, but it does not change the submitted results or the values quoted in the report.
+
+## Main results
+
+### With replacement
+
+- Theoretical white proportion: `0.379870`
+- Simulated white proportion from 10,000 draws: `0.378400`
+- Theoretical mean white count: `7.597403`
+- Simulated mean white count: `7.568000`
+- Probability of no white among the first three: `0.238478`; simulation: `0.228000`
+- Probability of four whites before five blacks: `0.359647`; simulation: `0.372000`
+- Exact \(P(X<6)\): `0.167366`; simulation: `0.168000`
+- Poisson approximation: `0.230956`
+- Continuity-corrected normal approximation: `0.166949`
+- Standard-normal-table approximation using \(z=-0.97\): `0.166000`
+
+### Without replacement
+
+- Theoretical mean white count: `7.597403`
+- Simulated mean white count: `7.606000`
+- Probability of no white among the first three: `0.237049`
+- Simulated frequency of no white among the first three: `0.246000`
+
+The report explains the probability models, approximation errors, finite-population correction, and differences between the two sampling procedures. It also includes a proof of the hypergeometric probability mass function and expected value.
+
+## Reading and using the workbook
+
+Open the completed `.xlsx` file in Microsoft Excel or another compatible application.
+
+- Start with `Team_Info` to confirm the group parameters.
+- Use the orange and blue summary blocks on the computation sheets for the report-ready results.
+- Scroll left on each computation sheet to inspect the 500 frozen experiments.
+- Formula cells calculate counts, relative frequencies, probability mass functions, deviations, and relative errors.
+- Do not replace the frozen computation data unless the group intends to regenerate every result and update the report.
+
+If new random data are required, allow a data-generation sheet to recalculate, copy `B2:U501`, and paste **values only** into the matching computation sheet. The report must then be updated to match the new summary values.
+
+## Editing and compiling the report
+
+Edit:
 
 ```text
-.
-├── Group_X_MAT107_Project_Worksheet.xlsx
-├── InstructionsOnLatex/
-│   └── lshort.pdf
-├── ProjectInstructions/
-│   ├── MAT107_Project_202604.pdf
-│   ├── MAT107_Project_202604.tex
-│   └── xmumlogo.png
-├── report/
-│   └── report.tex
-├── .gitignore
-└── README.md
+report/Group_3_MAT107_Project_202604.tex
 ```
 
-### Important Files
+The most important remaining edit is the final `Contribution` section. Replace each placeholder with an accurate summary agreed by the group.
 
-- `ProjectInstructions/MAT107_Project_202604.pdf`: official project instructions. Read this first.
-- `ProjectInstructions/MAT107_Project_202604.tex`: LaTeX source for the official instructions. This can be used as a style reference.
-- `ProjectInstructions/xmumlogo.png`: logo image used by the instruction LaTeX file.
-- `Group_X_MAT107_Project_Worksheet.xlsx`: Excel worksheet for data generation and computations.
-- `InstructionsOnLatex/lshort.pdf`: LaTeX reference guide.
-- `report/report.tex`: our group report source file. Write and edit the report here.
-
-## Project Requirements
-
-According to the instruction file, the group must submit:
-
-1. The final report PDF.
-2. The completed Excel file.
-
-Both final files should be named:
-
-```text
-Group_X_MAT107_Project_202604
-```
-
-Replace `X` with our assigned group number.
-
-The report must be written in LaTeX and should use a report/textbook style, not a simple problem-and-solution format. The instruction file also says that each member's contribution must be summarized in the final section.
-
-## Suggested Workflow
-
-1. Read `ProjectInstructions/MAT107_Project_202604.pdf`.
-2. Use `Group_X_MAT107_Project_Worksheet.xlsx` to generate and compute the required data.
-3. Write the report in `report/report.tex`.
-4. Compile `report/report.tex` into a PDF.
-5. Before submission, rename the final PDF and Excel file using the required group file name.
-
-## Working With the Excel File
-
-The instruction file says the Excel worksheet contains random data generation. Because random values can change when Excel recalculates, copy generated data from the data generation sheet to the computation sheet using **Paste Values**.
-
-Before editing the Excel file:
-
-1. Pull the latest version from Git.
-2. Tell the group you are editing it.
-3. Commit and push your changes when you finish.
-
-Excel files are binary files, so Git cannot merge two people's edits easily. Avoid having multiple people edit the worksheet at the same time.
-
-## Working With LaTeX
-
-Edit the report in:
-
-```text
-report/report.tex
-```
-
-If you use a local LaTeX installation, a common command is:
-
-```bash
-pdflatex report.tex
-```
-
-Run this command from inside the `report/` folder:
+Compile from the `report/` directory:
 
 ```bash
 cd report
-pdflatex report.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error \
+  -outdir=../output/pdf Group_3_MAT107_Project_202604.tex
 ```
 
-If references, citations, or table numbers do not update correctly, run `pdflatex` more than once.
-
-## Git Basics
-
-Git tracks changes to the project. GitHub or another remote repository stores the shared copy online.
-
-### Check the Current Status
-
-```bash
-git status
-```
-
-Use this before and after making changes. It shows which files were changed, added, or deleted.
-
-### Get the Latest Version
-
-Before starting work, run:
-
-```bash
-git pull
-```
-
-This downloads the latest changes from the shared repository.
-
-### Add Your Changes
-
-After editing files, choose what to include in your commit:
-
-```bash
-git add README.md
-git add report/report.tex
-```
-
-To add all changed files:
-
-```bash
-git add .
-```
-
-Use `git add .` carefully, because it adds every changed file in the repository.
-
-### Commit Your Changes
-
-A commit saves a snapshot of your work locally:
-
-```bash
-git commit -m "Write introduction section"
-```
-
-Good commit messages are short and specific, for example:
+The command writes the final PDF to:
 
 ```text
-Add binomial distribution explanation
-Update Excel results for Problem 1
-Fix formatting in contribution section
+output/pdf/Group_3_MAT107_Project_202604.pdf
 ```
 
-### Push Your Changes
+The verified PDF has nine physical pages: one cover page, seven pages between the cover and contribution section, and one contribution page. This satisfies the required 6--10 page main-report range.
 
-After committing, upload your changes:
+## Submission checklist
 
-```bash
-git push
+- [ ] Confirm all names and student IDs.
+- [ ] Replace all contribution placeholders with the group’s actual contributions.
+- [ ] Recompile the LaTeX report after the final edit.
+- [ ] Open the PDF and check every page, table, equation, header, and footer.
+- [ ] Open the final Excel file and confirm both computation summaries are visible.
+- [ ] Confirm the PDF and Excel file are both named `Group_3_MAT107_Project_202604`.
+- [ ] Submit the PDF and Excel workbook before **Friday, 17 July 2026, 23:59**.
+
+## Repository map
+
+```text
+.
+├── Group_X_MAT107_Project_Worksheet.xlsx     # original blank template
+├── outputs/019f5a64-406e-7bc1-a09a-31f20172f71a/
+│   └── Group_3_MAT107_Project_202604.xlsx    # completed workbook
+├── output/pdf/
+│   └── Group_3_MAT107_Project_202604.pdf     # final compiled report
+├── report/
+│   ├── Group_3_MAT107_Project_202604.tex     # editable report source
+│   └── xmumlogo.png
+├── ProjectInstructions/
+│   └── MAT107_Project_202604.tex             # official instructions
+└── README.md
 ```
 
-### Recommended Daily Workflow
+## Git workflow for team members
+
+Before editing:
 
 ```bash
 git pull
 git status
-# edit files
+```
+
+After editing:
+
+```bash
 git status
-git add <files>
-git commit -m "Describe what changed"
+git add <files-you-changed>
+git commit -m "Describe the MAT107 project update"
 git push
 ```
 
-## Avoiding Conflicts
-
-- Always run `git pull` before editing.
-- Tell the group before editing the Excel file.
-- Do not edit the same report section at the same time as another member.
-- Commit small, clear changes instead of one very large commit.
-- If Git reports a conflict, do not panic. Open the conflicted file, discuss with the group if needed, fix the marked sections, then commit the resolved file.
-
-## Files Not to Commit
-
-The `.gitignore` file should be used for generated or temporary files, such as LaTeX build files. In general, avoid committing:
-
-- `.aux`
-- `.log`
-- `.out`
-- `.toc`
-- temporary Excel lock files like `~$filename.xlsx`
-- system files such as `.DS_Store`
-
-The final PDF may be committed if the group decides to keep compiled outputs in the repository. If not, keep only the LaTeX source and Excel worksheet under version control.
-
-## Team Notes
-
-Please keep the report clear and readable:
-
-- Write in full sentences.
-- Explain calculations, not only final answers.
-- Use tables for probability values and relative frequencies.
-- Include comparisons between theoretical values and simulated results.
-- Record each member's contribution in the final contribution section.
+The Excel workbook is a binary file and cannot be merged reliably. Only one person should edit it at a time. Tell the group before changing the workbook and push the completed edit before another person begins.
