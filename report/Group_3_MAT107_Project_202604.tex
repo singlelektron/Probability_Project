@@ -1,58 +1,74 @@
 \documentclass[12pt]{article}
 
-\usepackage[a4paper,margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{booktabs,tabularx,array,multirow}
-\usepackage{graphicx,xcolor}
-\usepackage{fancyhdr,lastpage}
-\usepackage{microtype}
-\usepackage{float}
-\usepackage{enumitem}
+\usepackage{times,fancyhdr,lastpage}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath,amssymb,enumerate,amsbsy,amsthm,graphicx,titlesec,xcolor}
+\usepackage{booktabs,tabularx,array,multirow,float}
 
 \definecolor{xmumblue}{HTML}{2F5597}
 \definecolor{xmumorange}{HTML}{C65911}
 \definecolor{lightblue}{HTML}{D9E7F7}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{xca}[theorem]{Exercise}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
 
-\setlength{\parindent}{0pt}
+\setlength\parindent{0pt}
 \setlength{\parskip}{0.65em}
-\linespread{1.13}
+\linespread{1.5}
 \setlength{\headheight}{30pt}
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{MAT107 Probability Theory}
-\rhead{Group 3}
-\cfoot{Page \thepage\ of \pageref{LastPage}}
+\cfoot{\fontsize{11pt}{11pt}\selectfont{Page \thepage\ of \pageref{LastPage}}}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\textbf{Section \thesection}\;\;}
+  {0em}{}
+
+\newcommand{\shorttitle}{Sampling from an Urn}
 
 \newcommand{\relerr}[2]{\frac{\lvert #1-#2\rvert}{\lvert #2\rvert}}
 
 \begin{document}
 
+\lhead{\shorttitle}
+\rhead{202604/MAT107}
+
 \begin{titlepage}
   \centering
-  \includegraphics[width=0.38\textwidth]{xmumlogo.png}\par
-  \vspace{1.4cm}
-  {\Large MAT107 Probability Theory\par}
-  \vspace{0.5cm}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{xmumlogo}
+  \end{figure}
+
+  \vspace{3cm}
   {\huge\bfseries Sampling from an Urn:\\With and Without Replacement\par}
-  \vspace{0.5cm}
-  {\Large Group Project Report\par}
-  \vspace{1.4cm}
+  \vspace{4cm}
   \renewcommand{\arraystretch}{1.25}
   \begin{tabular}{ll}
-    Zhang Yang & MAT2509036\\
-    Zhu Xinbo & MAT2509040\\
-    Chen Yanfu & MAT2509003\\
-    Zhang Qixuan & MAT2509034
+    {\large ZHANG YANG} & {\large MAT2509036}\\
+    {\large ZHU XINBO} & {\large MAT2509040}\\
+    {\large CHEN YANFU} & {\large MAT2509003}\\
+    {\large ZHANG QIXUAN} & {\large MAT2509034}
   \end{tabular}
   \vfill
   {\large Group 3\par}
-  {\large July 2026\par}
+  {\large \today\par}
 \end{titlepage}
 
+\vfill\pagebreak
+
 \tableofcontents
-\newpage
+
+\vfill\pagebreak
 
 \section{Introduction and experimental design}
 
@@ -73,6 +89,7 @@ For a theoretical quantity \(t\) and a comparison value \(a\), relative error is
 \]
 The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
 
+\vfill\pagebreak
 \section{Drawing with replacement}
 
 \subsection{Overall proportion and binomial model}
@@ -133,6 +150,7 @@ P(4W\text{ before }5B)
 \]
 Equivalently, after the first eight draws at least four outcomes must be white; by that time either the fourth white or the fifth black must already have appeared. The simulated relative frequency was 0.372000, giving an absolute deviation of 0.012353 and a relative error of 3.4347\%.
 
+\vfill\pagebreak
 \section{Approximating the lower binomial tail}
 
 The event ``less than six white balls'' is \(X\leq5\). Its exact binomial probability is
@@ -176,6 +194,7 @@ Simulation & 0.168000 & 0.3787\%\\
 \end{tabular}
 \end{table}
 
+\vfill\pagebreak
 \section{Drawing without replacement}
 
 \subsection{Conditional probabilities and the hypergeometric law}
@@ -244,6 +263,7 @@ The probability that the first three balls are all black is now
 \]
 The empirical frequency was 0.246000, producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
 
+\vfill\pagebreak
 \section{Comparison of the two sampling models}
 
 The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
@@ -272,6 +292,7 @@ Variance of white count & 4.711376 & -- & 4.419793 & --\\
 \end{tabular}
 \end{table}
 
+\vfill\pagebreak
 \section{Conclusion}
 
 The simulations agree well with the principal theoretical predictions. The overall white proportion and both sample means are close to their expected values, and the binomial and hypergeometric probability tables have the anticipated shapes. Differences between theory and simulation are attributable to ordinary sampling variation in 500 experiments.
