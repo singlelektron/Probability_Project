@@ -1,9 +1,9 @@
 \documentclass[12pt]{article}
 
-\usepackage{times,fancyhdr,lastpage}
+\usepackage{fancyhdr}
 \usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsmath,amssymb,enumerate,amsbsy,amsthm,graphicx,titlesec,xcolor}
-\usepackage{booktabs,tabularx,array,multirow,float}
+\usepackage{amsmath,amssymb,enumerate,amsbsy,amsthm,graphicx,xcolor}
+\usepackage{booktabs,tabularx,array,float}
 
 \definecolor{xmumblue}{HTML}{2F5597}
 \definecolor{xmumorange}{HTML}{C65911}
@@ -27,11 +27,8 @@
 \setlength{\headheight}{30pt}
 \pagestyle{fancy}
 \fancyhf{}
-\cfoot{\fontsize{11pt}{11pt}\selectfont{Page \thepage\ of \pageref{LastPage}}}
+\cfoot{\fontsize{11pt}{11pt}\selectfont{Page \thepage}}
 
-\titleformat{\section}
-  {\normalfont\Large\bfseries}{\textbf{Section \thesection}\;\;}
-  {0em}{}
 
 \newcommand{\shorttitle}{Sampling from an Urn}
 
