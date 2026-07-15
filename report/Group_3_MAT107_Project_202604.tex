@@ -61,11 +61,7 @@
   {\large \today\par}
 \end{titlepage}
 
-\vfill\pagebreak
-
 \tableofcontents
-
-\vfill\pagebreak
 
 \section{Introduction and experimental design}
 
@@ -76,7 +72,7 @@ N=117+191=308,
 p=P(\text{white})=\frac{117}{308}=0.379870,
 \qquad q=1-p=0.620130.
 \]
-Two experiments were studied. In the first experiment, a ball was returned to the urn after every draw. In the second experiment, a selected ball was not returned. Each experiment consisted of 20 draws, and each model was simulated 500 times in the supplied workbook. Thus, each simulation contains 10,000 recorded draws.
+Two experiments were studied. In the first experiment, a ball was returned to the urn after every draw. In the second experiment, a selected ball was not returned. Each experiment consisted of 20 draws, and each model was simulated 500 times in the supplied workbook. Thus, across all 500 experiments, a total of 10,000 draws were recorded.
 
 The data-generation sheets contain volatile random formulas. One generated realization was copied as fixed values into the computation sheets before the numerical analysis was performed. Consequently, the results in this report remain unchanged when the workbook recalculates. White and black outcomes are represented by \(W\) and \(B\), respectively.
 
@@ -84,9 +80,8 @@ For a theoretical quantity \(t\) and a comparison value \(a\), relative error is
 \[
 \operatorname{RE}(a;t)=\frac{|a-t|}{|t|}\times100\%.
 \]
-The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
+Let \(\hat{f}(x)\) denote the simulated relative frequency of drawing exactly \(x\) white balls across the 500 experiments. The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
 
-\vfill\pagebreak
 \section{Drawing with replacement}
 
 \subsection{Overall proportion and binomial model}
@@ -95,7 +90,7 @@ With replacement, the 20 draws in one experiment are independent Bernoulli trial
 \[
 P(X=x)=\binom{20}{x}p^xq^{20-x},\qquad x=0,1,\ldots,20.
 \]
-Across the 10,000 simulated draws, the observed white proportion was 0.378400, compared with the theoretical value 0.379870. The absolute deviation was 0.001470 and the relative error was 0.3870\%. This close agreement is consistent with the law of large numbers.
+Across the 10,000 simulated draws, the observed white proportion was 0.378400, compared with the theoretical value 0.379870. The absolute deviation was 0.001470 and the relative error was 0.3870\%. This close agreement is consistent with the law of large numbers, which guarantees that the sample proportion converges to the true probability as the number of draws increases.
 
 Table~\ref{tab:binpmf} compares the binomial probabilities with the relative frequencies from the 500 experiments. Both columns sum to 1, up to rounding. The largest discrepancies occur at individual values such as \(x=10\), but the overall shape remains centred around 7 or 8 white balls.
 
@@ -106,7 +101,7 @@ Table~\ref{tab:binpmf} compares the binomial probabilities with the relative fre
 \small
 \begin{tabular}{crr@{\hspace{1.1cm}}crr}
 \toprule
-\(x\) & \(P(X=x)\) & Rel. freq. & \(x\) & \(P(X=x)\) & Rel. freq.\\
+\(x\) & \(P(X=x)\) & \(\hat{f}(x)\) & \(x\) & \(P(X=x)\) & \(\hat{f}(x)\)\\
 \midrule
 0  & 0.000071 & 0.000 & 11 & 0.054142 & 0.062\\
 1  & 0.000867 & 0.000 & 12 & 0.024874 & 0.034\\
@@ -147,8 +142,7 @@ P(4W\text{ before }5B)
 \]
 Equivalently, after the first eight draws at least four outcomes must be white; by that time either the fourth white or the fifth black must already have appeared. The simulated relative frequency was 0.372000, giving an absolute deviation of 0.012353 and a relative error of 3.4347\%.
 
-\vfill\pagebreak
-\section{Approximating the lower binomial tail}
+\subsection{Approximating the lower binomial tail}
 
 The event ``less than six white balls'' is \(X\leq5\). Its exact binomial probability is
 \[
@@ -162,7 +156,7 @@ P(X<6)\approx \sum_{x=0}^{5}e^{-\lambda}\frac{\lambda^x}{x!}=0.230956.
 \]
 This differs from the exact binomial value by 0.063589, a relative error of 37.9941\%. The approximation is poor because \(p\approx0.38\) is not small, whereas the Poisson approximation is most reliable when the number of trials is large and the success probability is small.
 
-For the normal approximation,
+For the normal approximation, the de Moivre--Laplace central limit theorem justifies treating the binomial distribution as approximately normal when \(n\) is sufficiently large. Here,
 \[
 \mu=np=7.597403,
 \qquad
@@ -185,13 +179,12 @@ Method & Probability & Relative error from exact binomial\\
 Exact binomial & 0.167366 & --\\
 Poisson approximation & 0.230956 & 37.9941\%\\
 Normal CDF, continuity corrected & 0.166949 & 0.2491\%\\
-Standard-normal table, \(z=-0.97\) & 0.166000 & 0.8163\%\\
+Standard-normal table, \(z=-0.97\) & 0.1660 & 0.8163\%\\
 Simulation & 0.168000 & 0.3787\%\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\vfill\pagebreak
 \section{Drawing without replacement}
 
 \subsection{Conditional probabilities and the hypergeometric law}
@@ -213,7 +206,7 @@ The stated probability mass function is valid, and its expected value is
 \end{proposition}
 
 \begin{proof}
-Every unordered sample of 20 distinct balls is equally likely. There are \(\binom{308}{20}\) such samples. A sample containing exactly \(x\) white balls can be formed by choosing \(x\) of the 117 white balls and independently choosing \(20-x\) of the 191 black balls. Hence the number of favourable samples is \(\binom{117}{x}\binom{191}{20-x}\), which proves the probability formula. Summing the favourable counts over all possible \(x\) partitions every sample according to its number of white balls, so the probabilities sum to one.
+Every unordered sample of 20 distinct balls is equally likely. There are \(\binom{308}{20}\) such samples. A sample containing exactly \(x\) white balls can be formed by choosing \(x\) of the 117 white balls and separately choosing \(20-x\) of the 191 black balls. Hence the number of favourable samples is \(\binom{117}{x}\binom{191}{20-x}\), which proves the probability formula. Summing the favourable counts over all possible \(x\) partitions every sample according to its number of white balls, so the probabilities sum to one.
 
 For the expectation, label the 117 white balls and define \(I_j=1\) if white ball \(j\) is included in the 20-ball sample, and \(I_j=0\) otherwise. Then \(X=\sum_{j=1}^{117}I_j\). By symmetry, any particular ball is included with probability \(20/308\). Linearity of expectation does not require independence, so
 \[
@@ -235,7 +228,7 @@ The simulated mean without replacement was 7.606000. Its absolute deviation from
 \small
 \begin{tabular}{crr@{\hspace{1.1cm}}crr}
 \toprule
-\(x\) & \(P(X=x)\) & Rel. freq. & \(x\) & \(P(X=x)\) & Rel. freq.\\
+\(x\) & \(P(X=x)\) & \(\hat{f}(x)\) & \(x\) & \(P(X=x)\) & \(\hat{f}(x)\)\\
 \midrule
 0  & 0.000047 & 0.000 & 11 & 0.051717 & 0.050\\
 1  & 0.000645 & 0.002 & 12 & 0.022467 & 0.032\\
@@ -260,7 +253,6 @@ The probability that the first three balls are all black is now
 \]
 The empirical frequency was 0.246000, producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
 
-\vfill\pagebreak
 \section{Comparison of the two sampling models}
 
 The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
@@ -289,7 +281,6 @@ Variance of white count & 4.711376 & -- & 4.419793 & --\\
 \end{tabular}
 \end{table}
 
-\vfill\pagebreak
 \section{Conclusion}
 
 The simulations agree well with the principal theoretical predictions. The overall white proportion and both sample means are close to their expected values, and the binomial and hypergeometric probability tables have the anticipated shapes. Differences between theory and simulation are attributable to ordinary sampling variation in 500 experiments.
