@@ -63,6 +63,8 @@
 
 \tableofcontents
 
+\vfill\pagebreak
+
 \section{Introduction and experimental design}
 
 An urn contains 117 white balls and 191 black balls, so the total number of balls is
@@ -82,16 +84,23 @@ For a theoretical quantity \(t\) and a comparison value \(a\), relative error is
 \]
 Let \(\hat{f}(x)\) denote the simulated relative frequency of drawing exactly \(x\) white balls across the 500 experiments. The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
 
-\newpage
+\vfill\pagebreak
 \section{Drawing with replacement}
 
-\subsection{Overall proportion and binomial model}
+\subsection{Overall Proportion}
 
-With replacement, the 20 draws in one experiment are independent Bernoulli trials with a constant success probability \(p\), where success means drawing a white ball. The number \(X\) of white balls therefore has the binomial distribution
+With replacement, the 20 draws in one experiment are independent Bernoulli trials with a constant success probability \(p\), where success means drawing a white ball.
+Across the 10,000 simulated draws, the observed white proportion was 0.378400, compared with the theoretical value 0.379870. The absolute deviation was 0.001470 and the relative error was 0.3870\%.
+This close agreement is consistent with the law of large numbers, which guarantees that the sample proportion converges to the true probability as the number of draws increases.
+
+The small discrepancy shows that the simulated draws reproduce the urn's white-ball proportion well. The remaining difference is expected random variation rather than a systematic change in the probability.
+
+\subsection{Binomial Model}
+
+Let \(X\) be the number of white balls in one 20-draw experiment. It therefore has the binomial distribution
 \[
 P(X=x)=\binom{20}{x}p^xq^{20-x},\qquad x=0,1,\ldots,20.
 \]
-Across the 10,000 simulated draws, the observed white proportion was 0.378400, compared with the theoretical value 0.379870. The absolute deviation was 0.001470 and the relative error was 0.3870\%. This close agreement is consistent with the law of large numbers, which guarantees that the sample proportion converges to the true probability as the number of draws increases.
 
 Table~\ref{tab:binpmf} compares the binomial probabilities with the relative frequencies from the 500 experiments. Both columns sum to 1, up to rounding. The largest discrepancies occur at individual values such as \(x=10\), but the overall shape remains centred around 7 or 8 white balls.
 
@@ -119,19 +128,27 @@ Table~\ref{tab:binpmf} compares the binomial probabilities with the relative fre
 \end{tabular}
 \end{table}
 
-\subsection{Expected value and short initial sequences}
+Most of the probability is concentrated around six to nine white balls, while counts near the two ends are very rare. Therefore, zero simulated frequencies at some extreme values are reasonable with only 500 experiments.
 
-For a binomial random variable, \(E[X]=20p\). Here,
+\subsection{Expected Value}
+
+For a binomial random variable, \(E(X)=20p\). Here,
 \[
-E[X]=20\left(\frac{117}{308}\right)=7.597403.
+E(X)=20\left(\frac{117}{308}\right)=7.597403.
 \]
 The simulated mean was 7.568000, an absolute deviation of 0.029403 and a relative error of 0.3870\%. The sample mean is therefore very close to its theoretical target.
+
+This agreement confirms that the simulation captures the long-run number of white balls per experiment, not only the overall proportion of individual white draws.
+
+\subsection{Short Initial Sequences}
 
 The event of no white ball among the first three draws is the event \(BBB\). Independence gives
 \[
 P(BBB)=q^3=0.238478.
 \]
 In the simulation, this event occurred 114 times, yielding an empirical frequency of 0.228000. Its absolute deviation was 0.010478 and its relative error was 4.3936\%. The larger percentage error, compared with the overall white proportion, is reasonable because this calculation uses only 500 three-draw sequences rather than 10,000 individual draws.
+
+Although the relative error is larger, the absolute difference is only about 0.0105. This illustrates why relative errors can appear noticeable for events estimated from a smaller number of observations.
 
 \subsection{Four white balls before five black balls}
 
@@ -142,6 +159,8 @@ P(4W\text{ before }5B)
 =0.359647.
 \]
 Equivalently, after the first eight draws at least four outcomes must be white; by that time either the fourth white or the fifth black must already have appeared. The simulated relative frequency was 0.372000, giving an absolute deviation of 0.012353 and a relative error of 3.4347\%.
+
+The simulated value is close to the theoretical result, supporting the counting argument based on the possible numbers of black balls appearing before the fourth white ball.
 
 \subsection{Approximating the lower binomial tail}
 
@@ -186,7 +205,10 @@ Simulation & 0.168000 & 0.3787\%\\
 \end{tabular}
 \end{table}
 
-\newpage
+Overall, the continuity-corrected normal model gives the best approximation because both (np) and (nq) are reasonably large. The comparison also shows that an approximation should be chosen according to its assumptions, not merely because it is easy to calculate.
+
+\vfill\pagebreak
+
 \section{Drawing without replacement}
 
 \subsection{Conditional probabilities and the hypergeometric law}
@@ -202,26 +224,7 @@ P(X=x)=\frac{\binom{117}{x}\binom{191}{20-x}}{\binom{308}{20}},
 \qquad x=0,1,\ldots,20.
 \]
 
-\begin{proposition}
-The stated probability mass function is valid, and its expected value is
-\(E[X]=20(117/308)\).
-\end{proposition}
-
-\begin{proof}
-Every unordered sample of 20 distinct balls is equally likely. There are \(\binom{308}{20}\) such samples. A sample containing exactly \(x\) white balls can be formed by choosing \(x\) of the 117 white balls and separately choosing \(20-x\) of the 191 black balls. Hence the number of favourable samples is \(\binom{117}{x}\binom{191}{20-x}\), which proves the probability formula. Summing the favourable counts over all possible \(x\) partitions every sample according to its number of white balls, so the probabilities sum to one.
-
-For the expectation, label the 117 white balls and define \(I_j=1\) if white ball \(j\) is included in the 20-ball sample, and \(I_j=0\) otherwise. Then \(X=\sum_{j=1}^{117}I_j\). By symmetry, any particular ball is included with probability \(20/308\). Linearity of expectation does not require independence, so
-\[
-E[X]=\sum_{j=1}^{117}E[I_j]
-=117\left(\frac{20}{308}\right)
-=20\left(\frac{117}{308}\right)=7.597403.
-\]
-This completes both parts of the result.
-\end{proof}
-
-\subsection{Numerical results}
-
-For the without-replacement case, the sample mean across 500 experiments was 7.606000. Its absolute deviation from 7.597403 was 0.008597, or 0.1132\%. Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simulated relative frequencies.
+Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simulated relative frequencies.
 
 \begin{table}[H]
 \centering
@@ -247,6 +250,23 @@ For the without-replacement case, the sample mean across 500 experiments was 7.6
 \end{tabular}
 \end{table}
 
+The simulated frequencies follow the central shape of the hypergeometric distribution, with the largest probabilities again near seven and eight white balls. Small differences at individual values are expected from the finite number of experiments.
+
+\subsection{Expected value}
+
+Label the 117 white balls and define \(I_j=1\) if white ball \(j\) is included in the 20-ball sample, and \(I_j=0\) otherwise. Then \(X=\sum_{j=1}^{117}I_j\). By symmetry, any particular ball is included with probability \(20/308\). Linearity of expectation does not require independence, so
+\[
+E[X]=\sum_{j=1}^{117}E[I_j]
+=117\left(\frac{20}{308}\right)
+=20\left(\frac{117}{308}\right)=7.597403.
+\]
+
+The simulated mean without replacement was 7.606000. Its absolute deviation from 7.597403 was 0.008597, or 0.1132\%. Thus, the simulated mean is close to the theoretical value, just as in the with-replacement experiment.
+
+The unchanged theoretical mean shows that removing balls affects dependence and variability, but not the average number of white balls in a sample of fixed size.
+
+\subsection{No white ball among the first three draws}
+
 The probability that the first three balls are all black is now
 \[
 \frac{191}{308}\frac{190}{307}\frac{189}{306}
@@ -255,7 +275,10 @@ The probability that the first three balls are all black is now
 \]
 In the simulation, this event occurred 123 times (empirical frequency 0.246000), producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
 
-\newpage
+The theoretical probability is slightly lower than in the with-replacement case because each removed black ball makes the next black draw less likely. The simulated ordering is reversed in this realization, which is consistent with ordinary sampling variation.
+
+\vfill\pagebreak
+
 \section{Comparison of the two sampling models}
 
 The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
@@ -284,14 +307,16 @@ Variance of white count & 4.711376 & -- & 4.419793 & --\\
 \end{tabular}
 \end{table}
 
-\newpage
+\vfill\pagebreak
+
 \section{Conclusion}
 
 The simulations agree well with the principal theoretical predictions. The overall white proportion and both sample means are close to their expected values, and the binomial and hypergeometric probability tables have the anticipated shapes. Differences between theory and simulation are attributable to ordinary sampling variation in 500 experiments.
 
 For the lower binomial tail, the continuity-corrected normal approximation was accurate, whereas the Poisson approximation was not appropriate for the relatively large success probability. Removing balls creates dependence and slightly reduces the variance through the finite-population correction, but it does not change the expected white count. These observations illustrate how the sampling mechanism affects a distribution even when the one-draw proportion remains the same.
 
-\newpage
+\vfill\pagebreak
+
 \section*{Contribution}
 \addcontentsline{toc}{section}{Contribution}
 

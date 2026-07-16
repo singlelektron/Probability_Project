@@ -66,7 +66,7 @@ The computation sheets contain fixed `W`/`B` values. Recalculating Excel can cha
 - Probability of no white among the first three: `0.237049`
 - Simulated frequency of no white among the first three: `0.246000`
 
-The report explains the probability models, approximation errors, finite-population correction, and differences between the two sampling procedures. It also includes a proof of the hypergeometric probability mass function and expected value.
+The report explains the probability models, approximation errors, finite-population correction, and differences between the two sampling procedures. It also includes an indicator-variable proof of the expected value for sampling without replacement.
 
 ## Reading and using the workbook
 
@@ -104,7 +104,7 @@ The command writes the final PDF to:
 output/pdf/Group_3_MAT107_Project_202604.pdf
 ```
 
-The verified PDF has nine physical pages: one cover page, seven pages between the cover and contribution section, and one contribution page. This satisfies the required 6--10 page main-report range.
+The verified PDF has twelve physical pages: one cover page, ten pages between the cover and contribution section, and one contribution page. This satisfies the required 6--10 page main-report range.
 
 ## Submission checklist
 
