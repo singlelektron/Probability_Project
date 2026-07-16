@@ -85,7 +85,7 @@ For a theoretical quantity \(t\) and a comparison value \(a\), relative error is
 Let \(\hat{f}(x)\) denote the simulated relative frequency of drawing exactly \(x\) white balls across the 500 experiments. The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
 
 \vfill\pagebreak
-\section{Drawing with replacement}
+\section{Drawing With Replacement}
 
 \subsection{Overall Proportion}
 
@@ -106,7 +106,7 @@ Table~\ref{tab:binpmf} compares the binomial probabilities with the relative fre
 
 \begin{table}[H]
 \centering
-\caption{Binomial probabilities and simulated relative frequencies.}
+\caption{Binomial probabilities and Simulated Relative Frequencies.}
 \label{tab:binpmf}
 \small
 \begin{tabular}{crr@{\hspace{1.1cm}}crr}
@@ -150,7 +150,7 @@ In the simulation, this event occurred 114 times, yielding an empirical frequenc
 
 Although the relative error is larger, the absolute difference is only about 0.0105. This illustrates why relative errors can appear noticeable for events estimated from a smaller number of observations.
 
-\subsection{Four white balls before five black balls}
+\subsection{Four White Balls Before Five Black Balls}
 
 Suppose the fourth white ball arrives after exactly \(b\) black balls, where \(b=0,1,2,3,4\). The last draw must be white, and among the preceding \(b+3\) positions there must be exactly three white balls. Therefore,
 \[
@@ -162,7 +162,7 @@ Equivalently, after the first eight draws at least four outcomes must be white; 
 
 The simulated value is close to the theoretical result, supporting the counting argument based on the possible numbers of black balls appearing before the fourth white ball.
 
-\subsection{Approximating the lower binomial tail}
+\subsection{Approximating the Lower Binomial Tail}
 
 We next examine the lower tail, i.e.\ fewer than six white balls (\(X\leq5\)). Its exact binomial probability is
 \[
@@ -209,9 +209,9 @@ Overall, the continuity-corrected normal model gives the best approximation beca
 
 \vfill\pagebreak
 
-\section{Drawing without replacement}
+\section{Drawing Without Replacement}
 
-\subsection{Conditional probabilities and the hypergeometric law}
+\subsection{Conditional Probabilities and the Hypergeometric Law}
 
 Without replacement, successive draws are dependent. If \(m_1\) white balls and \(n_1\) black balls have already been drawn, the conditional probability that the next ball is white is
 \[
@@ -228,7 +228,7 @@ Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simu
 
 \begin{table}[H]
 \centering
-\caption{Hypergeometric probabilities and simulated relative frequencies.}
+\caption{Hypergeometric Probabilities and Simulated Relative Frequencies.}
 \label{tab:hyperpmf}
 \small
 \begin{tabular}{crr@{\hspace{1.1cm}}crr}
@@ -252,7 +252,7 @@ Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simu
 
 The simulated frequencies follow the central shape of the hypergeometric distribution, with the largest probabilities again near seven and eight white balls. Small differences at individual values are expected from the finite number of experiments.
 
-\subsection{Expected value}
+\subsection{Expected Value}
 
 Label the 117 white balls and define \(I_j=1\) if white ball \(j\) is included in the 20-ball sample, and \(I_j=0\) otherwise. Then \(X=\sum_{j=1}^{117}I_j\). By symmetry, any particular ball is included with probability \(20/308\). Linearity of expectation does not require independence, so
 \[
@@ -265,7 +265,7 @@ The simulated mean without replacement was 7.606000. Its absolute deviation from
 
 The unchanged theoretical mean shows that removing balls affects dependence and variability, but not the average number of white balls in a sample of fixed size.
 
-\subsection{No white ball among the first three draws}
+\subsection{No White Ball Among the First Three Draws}
 
 The probability that the first three balls are all black is now
 \[
@@ -279,7 +279,7 @@ The theoretical probability is slightly lower than in the with-replacement case 
 
 \vfill\pagebreak
 
-\section{Comparison of the two sampling models}
+\section{Comparison of the Two Sampling Models}
 
 The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
 \[
@@ -295,7 +295,7 @@ The probability of three initial black balls also decreases from 0.238478 with r
 
 \begin{table}[H]
 \centering
-\caption{Summary comparison of theoretical and simulated quantities.}
+\caption{Summary Comparison of Theoretical and Simulated Quantities.}
 \begin{tabular}{lrrrr}
 \toprule
 Quantity & Theory, repl. & Sim., repl. & Theory, no repl. & Sim., no repl.\\
