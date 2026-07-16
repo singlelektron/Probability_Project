@@ -8,3 +8,4 @@ tmp/
 *.synctex.gz
 *.toc
 *.inspect.ndjson
+report/out/
