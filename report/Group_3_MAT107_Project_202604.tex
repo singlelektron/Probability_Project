@@ -82,6 +82,7 @@ For a theoretical quantity \(t\) and a comparison value \(a\), relative error is
 \]
 Let \(\hat{f}(x)\) denote the simulated relative frequency of drawing exactly \(x\) white balls across the 500 experiments. The simulated frequencies need not equal the theoretical probabilities exactly. Sampling variation is expected because only 500 repetitions were performed, and rare events may occur very few times or not at all.
 
+\newpage
 \section{Drawing with replacement}
 
 \subsection{Overall proportion and binomial model}
@@ -130,7 +131,7 @@ The event of no white ball among the first three draws is the event \(BBB\). Ind
 \[
 P(BBB)=q^3=0.238478.
 \]
-The empirical frequency was 0.228000. Its absolute deviation was 0.010478 and its relative error was 4.3936\%. The larger percentage error, compared with the overall white proportion, is reasonable because this calculation uses only 500 three-draw sequences rather than 10,000 individual draws.
+In the simulation, this event occurred 114 times, yielding an empirical frequency of 0.228000. Its absolute deviation was 0.010478 and its relative error was 4.3936\%. The larger percentage error, compared with the overall white proportion, is reasonable because this calculation uses only 500 three-draw sequences rather than 10,000 individual draws.
 
 \subsection{Four white balls before five black balls}
 
@@ -144,17 +145,17 @@ Equivalently, after the first eight draws at least four outcomes must be white; 
 
 \subsection{Approximating the lower binomial tail}
 
-The event ``less than six white balls'' is \(X\leq5\). Its exact binomial probability is
+We next examine the lower tail, i.e.\ fewer than six white balls (\(X\leq5\)). Its exact binomial probability is
 \[
 P(X<6)=\sum_{x=0}^{5}\binom{20}{x}p^xq^{20-x}=0.167366.
 \]
-The empirical frequency was 0.168000. Its relative error from the exact value was only 0.3787\%.
+From the 500 experiments, this event occurred 84 times, giving an empirical frequency of 0.168000. Its relative error from the exact value was only 0.3787\%.
 
 For the Poisson approximation, \(\lambda=np=7.597403\), so
 \[
 P(X<6)\approx \sum_{x=0}^{5}e^{-\lambda}\frac{\lambda^x}{x!}=0.230956.
 \]
-This differs from the exact binomial value by 0.063589, a relative error of 37.9941\%. The approximation is poor because \(p\approx0.38\) is not small, whereas the Poisson approximation is most reliable when the number of trials is large and the success probability is small.
+The Poisson value differs from the exact binomial probability by 0.063589, a relative error of 37.9941\%. The approximation is poor because \(p\approx0.38\) is not small, whereas the Poisson approximation is most reliable when the number of trials is large and the success probability is small.
 
 For the normal approximation, the de Moivre--Laplace central limit theorem justifies treating the binomial distribution as approximately normal when \(n\) is sufficiently large. Here,
 \[
@@ -185,6 +186,7 @@ Simulation & 0.168000 & 0.3787\%\\
 \end{tabular}
 \end{table}
 
+\newpage
 \section{Drawing without replacement}
 
 \subsection{Conditional probabilities and the hypergeometric law}
@@ -219,7 +221,7 @@ This completes both parts of the result.
 
 \subsection{Numerical results}
 
-The simulated mean without replacement was 7.606000. Its absolute deviation from 7.597403 was 0.008597, or 0.1132\%. Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simulated relative frequencies.
+For the without-replacement case, the sample mean across 500 experiments was 7.606000. Its absolute deviation from 7.597403 was 0.008597, or 0.1132\%. Table~\ref{tab:hyperpmf} compares the hypergeometric probabilities with the simulated relative frequencies.
 
 \begin{table}[H]
 \centering
@@ -251,8 +253,9 @@ The probability that the first three balls are all black is now
 =\frac{\binom{191}{3}}{\binom{308}{3}}
 =0.237049.
 \]
-The empirical frequency was 0.246000, producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
+In the simulation, this event occurred 123 times (empirical frequency 0.246000), producing an absolute deviation of 0.008951 and a relative error of 3.7760\%.
 
+\newpage
 \section{Comparison of the two sampling models}
 
 The two models have the same one-draw probability \(p=117/308\) and the same expected number of white balls, 7.597403. Their dependence structures differ. With replacement, the binomial variance is
@@ -281,6 +284,7 @@ Variance of white count & 4.711376 & -- & 4.419793 & --\\
 \end{tabular}
 \end{table}
 
+\newpage
 \section{Conclusion}
 
 The simulations agree well with the principal theoretical predictions. The overall white proportion and both sample means are close to their expected values, and the binomial and hypergeometric probability tables have the anticipated shapes. Differences between theory and simulation are attributable to ordinary sampling variation in 500 experiments.
